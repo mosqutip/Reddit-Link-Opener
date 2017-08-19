@@ -1,6 +1,7 @@
 			// Saves options to localStorage.
 			function save_options() {
 				var checkbox_opencomments = document.getElementById("opencomments");
+				var checkbox_openzerocomments = document.getElementById("openzerocomments");
 				var checkbox_openvisitedlinks = document.getElementById("openvisitedlinks");
 				var checkbox_opennsfwlinks = document.getElementById("opennsfwlinks");
 				var checkbox_openlinksdirectly = document.getElementById("openlinksdirectly");
@@ -14,6 +15,7 @@
 				}
 
 				localStorage["opencomments"] = checkbox_opencomments.checked;
+				localStorage["openzerocomments"] = checkbox_openzerocomments.checked;
 				localStorage["openvisitedlinks"] = checkbox_openvisitedlinks.checked;
 				localStorage["opennsfwlinks"] = checkbox_opennsfwlinks.checked;
 				localStorage["openlinksdirectly"] = checkbox_openlinksdirectly.checked;
@@ -38,6 +40,7 @@
 			// Restores select box state to saved value from localStorage.
 			function restore_options() {
 				var opencomments = localStorage["opencomments"];
+				var openzerocomments = localStorage["openzerocomments"];
 				var openvisitedlinks = localStorage["openvisitedlinks"];
 				var opennsfwlinks = localStorage["opennsfwlinks"];
 				var openlinksdirectly = localStorage["openlinksdirectly"];
@@ -45,6 +48,7 @@
 				var keyboardshortcut = localStorage["keyboardshortcut"];
 
 				var checkbox_opencomments = document.getElementById("opencomments");
+				var checkbox_openzerocomments = document.getElementById("openzerocomments");
 				var checkbox_openvisitedlinks = document.getElementById("openvisitedlinks");
 				var checkbox_opennsfwlinks = document.getElementById("opennsfwlinks");
 				var checkbox_openlinksdirectly = document.getElementById("openlinksdirectly");
@@ -52,6 +56,7 @@
 				var input_keyboardshortcut = document.getElementById("keyboardshortcut");
 
 				checkbox_opencomments.checked = (opencomments == "true");
+				checkbox_openzerocomments.checked = (openzerocomments == "true");
 				checkbox_openvisitedlinks.checked = (openvisitedlinks == "true");
 				checkbox_opennsfwlinks.checked = (opennsfwlinks == "true");
 				checkbox_openlinksdirectly.checked = (openlinksdirectly == "true");

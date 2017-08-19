@@ -15,7 +15,7 @@ function isNSFW(url){
 	
 	for (var i=0; i < nsfw_arr.length; i++) {
 	  if (url.parentNode.parentNode == nsfw_arr[i].parentNode.parentNode){
-	  	return true;
+		return true;
 	  }	  
 	};
 	
@@ -32,7 +32,7 @@ chrome.extension.onRequest.addListener(function(request, sender, callback) {
 
 			var i;
 			for( i = 0; i < jquery_set_links.length; i++) {
-				data.push(new Array(jquery_set_links[i].text, jquery_set_links[i].href, jquery_set_comments[i].href, isNSFW(jquery_set_links[i]), ($(jquery_set_links[i]).parents('.visited').length == 0), $(jquery_set_links[i]).closest('.thing').data('url')));
+				data.push(new Array(jquery_set_links[i].text, jquery_set_links[i].href, jquery_set_comments[i].href, isNSFW(jquery_set_links[i]), ($(jquery_set_links[i]).parents('.visited').length == 0), $(jquery_set_links[i]).closest('.thing').data('url'), jquery_set_comments[i].text));
 			}
 
 			if(data.length > 0) {

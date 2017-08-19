@@ -39,11 +39,12 @@
 				if(!url[1].match("javascript:.*")) {
 
 					var opencomments = (localStorage["opencomments"] == "true");
+					var openzerocomments = (localStorage["openzerocomments"] == "true");
 					var openvisitedlinks = (localStorage["openvisitedlinks"] == "true");
 					var opennsfwlinks = (localStorage["opennsfwlinks"] == "true");
 					var openlinksdirectly = (localStorage["openlinksdirectly"] == "true");
 					var tabslimit = localStorage["tabslimit"];
-					
+
 					if(!opennsfwlinks && ((url[0].toLowerCase().indexOf("nsfw") != -1) || url[3])) {
 						openUrl(urls, index + 1, count, tabid);
 						return;
@@ -88,11 +89,13 @@
 							selected : false
 						});
 
-						if(opencomments) {
-							chrome.tabs.create({
-								url : url[2],
-								selected : false
-							});
+						if (opencomments && (url[1] != url[2])) {
+							if (openzerocomments || (url[6] != "comment")) {
+								chrome.tabs.create({
+									url : url[2],
+									selected : false
+								});
+							}
 						}
 
 						openUrl(urls, index + 1, count + 1, tabid);
@@ -138,6 +141,7 @@
 			function init() {
 
 				var opencomments = localStorage["opencomments"];
+				var openzerocomments = localStorage["openzerocomments"];
 				var openvisitedlinks = localStorage["openvisitedlinks"];
 				var opennsfwlinks = localStorage["opennsfwlinks"];
 				var openlinksdirectly = localStorage["openlinksdirectly"];
@@ -148,6 +152,10 @@
 
 				if(!opencomments) {
 					localStorage["opencomments"] = "false";
+				}
+
+				if (!openzerocomments) {
+					localStorage["openzerocomments"] = "false";
 				}
 
 				if(!openvisitedlinks) {
